@@ -1,3 +1,4 @@
 # BasicCrawler
-##Purpose: to fetch the data from web 
+##Purpose: 
+to fetch the data from web 
 ##Contribute 
