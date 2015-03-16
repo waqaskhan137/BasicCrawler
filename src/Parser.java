@@ -3,4 +3,8 @@
  */
 class Parser {
 	
+	void Parsing(String html){
+		
+	}
+	
 }

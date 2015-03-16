@@ -14,10 +14,12 @@ import org.jsoup.nodes.Element;
 class  UrlHandler {
 	
 	protected String seedUrl = null;
+	protected String depth = null;
 
 	@SuppressWarnings("unused")
-	private void setUrlSeeder(String startingUrl){
-
+	private void setUrlSeeder(String startingUrl, String uDepth){
+		
+		depth = uDepth;
 		seedUrl = startingUrl;
 	}
 
@@ -28,7 +30,9 @@ class  UrlHandler {
 
 	void urlFinder() {
 		/**
-		 * Finding the Hyper links and jumping and storing those in Array List 
+		 * 1- Finding the Hyper links 
+		 * 2- Restriction of the same domain Link search, Regular Expression 
+		 * 3- jumping and storing those in Array List 
 		 */
 		try {
 			Document doc = (Document) Jsoup.parse(new URL(getSeedUrl()), 2000);
@@ -54,29 +58,37 @@ class  UrlHandler {
 		
 	}
 
+	@SuppressWarnings("null")
 	void visitedUrl(String URL) {
 		/**
 		 * Storing the Visited urls to the url bank 
 		 */
 		String type = "visited";
 		
-		ArrayList vUrl = new ArrayList<String>();
-		//until job is done 
-		while(true){
-		//Store URL until job is done 
-		
-		
+		ArrayList<String> vUrl = null;
 		//Add those in Array List 
 		vUrl.add(URL);
-		}
 		
+		//Have to think over this 
 		urlBank(vUrl, type);
 	}
 	
-	void unvisitedUrl(ArrayList<String> url ) {
+	void unvisitedUrl(ArrayList<String> url ) throws IOException {
+		
+		String type = "unvisited";
 		/**
 		 * sending the urls to the Page Fethcer and to the URL bank for storage
 		 */
+		PageFetcher pObj = new PageFetcher();
+		Parser paObj = new Parser();
+		for(int i= 0; i<url.size(); i++){
+			String unUrl = url.get(i);
+			String html = pObj.fetchPage(unUrl);
+			visitedUrl(unUrl);
+			paObj.Parsing(html);
+			
+		}
+		urlBank(url, type);
 		
 		
 			

@@ -1,4 +1,4 @@
-# BasicCrawler
+# Web Data Collector
 ##Purpose: 
 
 to fetch the data from web 
