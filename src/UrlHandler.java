@@ -28,10 +28,10 @@ class  UrlHandler {
 
 	void urlFinder() {
 		/**
-		 * Finding the Hyper links and jumping and storing those in Queue 
+		 * Finding the Hyper links and jumping and storing those in Array List 
 		 */
 		try {
-			Document doc = (Document) Jsoup.parse(new URL("http://www.bits4beats.it/"), 2000);
+			Document doc = (Document) Jsoup.parse(new URL(getSeedUrl()), 2000);
 			Elements resultLinks = (Elements) ((Element) doc).select("a");
 		    int  urlSize = ((org.jsoup.select.Elements) resultLinks).size();
 		   
@@ -54,20 +54,39 @@ class  UrlHandler {
 		
 	}
 
-	void visitedUrl() {
+	void visitedUrl(String URL) {
+		/**
+		 * Storing the Visited urls to the url bank 
+		 */
+		String type = "visited";
 		
+		ArrayList vUrl = new ArrayList<String>();
+		//until job is done 
+		while(true){
+		//Store URL until job is done 
+		
+		
+		//Add those in Array List 
+		vUrl.add(URL);
+		}
+		
+		urlBank(vUrl, type);
 	}
 	
 	void unvisitedUrl(ArrayList<String> url ) {
+		/**
+		 * sending the urls to the Page Fethcer and to the URL bank for storage
+		 */
 		
 		
 			
 	}
 
-	void urlBank(String url) {
+	void urlBank(ArrayList<String> url, String type) {
 		/**
-		 * storing the URL in a queue and sending it to the page fetcher 
+		 * storing the Array list of URLs in MongoDB
 		 */
+		
 	}
 
 }

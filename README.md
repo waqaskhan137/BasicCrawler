@@ -19,4 +19,5 @@ Algorithm of a basic web crawler:-
 * repeat step 2 to 5 until queue is linksToBeVisited empty.
 
 ###Contribute 
-
+Just open it in Eclipse and start contributing 
+Or open an issue if you have any trouble
