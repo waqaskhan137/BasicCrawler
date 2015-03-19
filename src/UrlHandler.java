@@ -1,15 +1,8 @@
-import com.mongodb.*;
-
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.lang.model.util.Elements;
-import javax.swing.text.Document;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 
@@ -43,9 +36,11 @@ class UrlHandler {
 		 * search, Regular Expression 3- jumping and storing those in Array List
 		 */
 		try {
-			Document doc = (Document) Jsoup.parse(new URL(getSeedUrl()), 2000);
-			Elements resultLinks = (Elements) ((Element) doc).select("a");
-			int urlSize = ((org.jsoup.select.Elements) resultLinks).size();
+
+			org.jsoup.nodes.Document doc = Jsoup.connect(getSeedUrl()).get();
+
+			org.jsoup.select.Elements resultLinks = doc.select("a");
+			// int urlSize = ((org.jsoup.select.Elements) resultLinks).size();
 
 			ArrayList<String> href = new ArrayList<String>();
 
@@ -114,6 +109,7 @@ class UrlHandler {
 
 	}
 
+	// Do we really need this ? for storing visited and unvisited url storage?
 	void urlBank(ArrayList<String> url, String type) {
 		/**
 		 * storing the Array list of URLs in MongoDB With time stamp
