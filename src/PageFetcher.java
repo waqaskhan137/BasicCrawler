@@ -3,8 +3,8 @@ import java.io.IOException;
 import org.jsoup.Jsoup;
 
 /**
- * @contributor rmw 
- * Purpose: This class fetches the web pages
+ * @contributor rmw
+ * @Purpose: This class fetches the web pages
  */
 class PageFetcher {
 

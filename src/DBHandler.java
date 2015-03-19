@@ -10,7 +10,8 @@ import com.mongodb.DBCursor;
 import com.mongodb.Mongo;
 
 /**
- * @contributors rmw Purpose: Handles only Data base
+ * @contributors rmw
+ * @Purpose: Handles only Data base
  */
 public class DBHandler {
 	// initiating logger

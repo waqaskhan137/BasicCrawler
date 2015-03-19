@@ -14,7 +14,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 
 /**
- * @contributor rmw Purpose: This class handles only URL
+ * @contributor rmw
+ * @Purpose: This class handles only URL
  */
 class UrlHandler {
 	// initiating logger
@@ -50,6 +51,9 @@ class UrlHandler {
 
 			for (Element link : resultLinks) {
 
+				// Adding regular expression for filtering out the url
+
+				// Adding the urls to the Array List
 				href.add(link.attr("href"));
 			}
 
@@ -89,15 +93,23 @@ class UrlHandler {
 		/**
 		 * sending the urls to the Page Fethcer and to the URL bank for storage
 		 */
-		PageFetcher pObj = new PageFetcher();
-		Parser paObj = new Parser();
+		ArrayList<String> html = new ArrayList<String>();
+
+		PageFetcher pageObj = new PageFetcher();
+		Parser parserObj = new Parser();
 		for (int i = 0; i < url.size(); i++) {
 			String unUrl = url.get(i);
-			String html = pObj.fetchPage(unUrl);
-			visitedUrl(unUrl);
-			paObj.Parsing(html);
+			// sending it to the Page fetcher and getting back the html of the
+			// page
+			html.add(pageObj.fetchPage(unUrl));
 
+			// Putting it in visited url list
+			visitedUrl(unUrl);
 		}
+
+		parserObj.Parsing(html);
+
+		// Under consideration
 		urlBank(url, type);
 
 	}
