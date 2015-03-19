@@ -1,8 +1,11 @@
 import com.mongodb.*;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.lang.model.util.Elements;
 import javax.swing.text.Document;
@@ -11,9 +14,12 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 
 /**
- * @contributor rmw This class handles only URL
+ * @contributor rmw Purpose: This class handles only URL
  */
 class UrlHandler {
+	// initiating logger
+	private static final Logger log = Logger.getLogger(UrlHandler.class
+			.getName());
 
 	protected String seedUrl = null;
 	protected String depth = null;
@@ -40,7 +46,7 @@ class UrlHandler {
 			Elements resultLinks = (Elements) ((Element) doc).select("a");
 			int urlSize = ((org.jsoup.select.Elements) resultLinks).size();
 
-			ArrayList href = new ArrayList();
+			ArrayList<String> href = new ArrayList<String>();
 
 			for (Element link : resultLinks) {
 
@@ -52,9 +58,12 @@ class UrlHandler {
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			log.log(Level.SEVERE, e.toString());
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			log.log(Level.SEVERE, e.toString());
 		}
 
 	}

@@ -1,11 +1,11 @@
 /**
- * @contributor rmw
- * Only handles the Parsing of the web pages 
+ * @contributor rmw 
+ * purpose: Only handles the Parsing of the web pages
  */
 class Parser {
-	
-	void Parsing(String html){
-		
+
+	void Parsing(String html) {
+
 	}
-	
+
 }

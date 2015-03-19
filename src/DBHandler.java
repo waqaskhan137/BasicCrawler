@@ -1,6 +1,7 @@
 import java.net.UnknownHostException;
-
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -9,9 +10,12 @@ import com.mongodb.DBCursor;
 import com.mongodb.Mongo;
 
 /**
- * @contributors rmw
+ * @contributors rmw Purpose: Handles only Data base
  */
 public class DBHandler {
+	// initiating logger
+	private static final Logger log = Logger.getLogger(DBHandler.class
+			.getName());
 	DBCollection collection;
 
 	private void initializer() throws UnknownHostException {
@@ -19,11 +23,10 @@ public class DBHandler {
 		Mongo mongo = new Mongo("localhost", 27017);
 		// get database from MongoDB,
 		// if database doesn't exists, mongoDB will create it automatically
-		DB db = mongo.getDB("dineshonjavaDB");
+		DB db = mongo.getDB("URL");
 
-		// Get collection from MongoDB, database named "dineshonjavaDB"
 		// if collection doesn't exists, mongoDB will create it automatically
-		collection = db.getCollection("dineshonjavaCollection");
+		collection = db.getCollection("URLBank");
 
 	}
 
@@ -35,16 +38,15 @@ public class DBHandler {
 		// create a document to store key and value
 		BasicDBObject document = new BasicDBObject();
 		document.put("id", 1000);
-		document.put("msg", "Hello World mongoDB in Java! Dinesh On Java");
+		document.put("msg", "Whatever");
 
-		// save it into collection named "dineshonjavaCollection"
 		collection.insert(document);
-
+		log.log(Level.INFO, "Document which is being Insert: \n" + document);
 		return true;
 	}
 
 	String fetch() throws UnknownHostException {
-		
+
 		initializer();
 
 		// search query
@@ -53,14 +55,14 @@ public class DBHandler {
 
 		// query it
 		DBCursor cursor = collection.find(searchQuery);
-
+		String data = null;
 		// loop over the cursor and display the retrieved result
 		while (cursor.hasNext()) {
-			System.out.println(cursor.next());
+			data += cursor.next();
 		}
 
-		System.out.println("Done");
-		return "";
+		log.log(Level.INFO, "Query Done\n" + data);
+		return data;
 
 	}
 
