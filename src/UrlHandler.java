@@ -16,10 +16,11 @@ class UrlHandler {
 			.getName());
 
 	protected String seedUrl = null;
+
+	// Need to define the depth of the url
 	protected String depth = null;
 
-	@SuppressWarnings("unused")
-	private void setUrlSeeder(String startingUrl, String uDepth) {
+	public void setUrlSeeder(String startingUrl, String uDepth) {
 
 		depth = uDepth;
 		seedUrl = startingUrl;
