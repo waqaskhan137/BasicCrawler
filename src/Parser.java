@@ -15,8 +15,6 @@ class Parser {
 
 	void Parsing(ArrayList<String> html) throws UnknownHostException {
 
-		// getting body tag or any element, Not sure about this will look at t
-		// later
 		String tag = "body";
 
 		// getting body text of the page

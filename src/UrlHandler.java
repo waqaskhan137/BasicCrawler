@@ -35,6 +35,16 @@ class UrlHandler {
 		return seedUrl;
 	}
 
+	boolean urlDepth(String url) {
+		// Regular Expression comes in if statement
+		if (url != null) {
+			// Same domain url [{\\String example.com/*}]
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	void urlExplorer() {
 		/**
 		 * 1- Finding the Hyper links 2- Restriction of the same domain Link
@@ -73,10 +83,11 @@ class UrlHandler {
 	}
 
 	@SuppressWarnings("null")
-	void visitedUrl(String URL) {
+	void visitedUrl(String URL, int fetchCheck) {
 		/**
 		 * Storing the Visited urls to the url bank
 		 */
+		// fecthCheck 1= fetched, 0 = not fetched
 		String type = "visited";
 
 		ArrayList<String> vUrl = null;
@@ -100,11 +111,19 @@ class UrlHandler {
 		for (int i = 0; i < url.size(); i++) {
 			String unUrl = url.get(i);
 			// sending it to the Page fetcher and getting back the html of the
-			// page
-			html.add(pageObj.fetchPage(unUrl));
 
-			// Putting it in visited url list
-			visitedUrl(unUrl);
+			if (urlDepth(unUrl) != false) {
+
+				html.add(pageObj.fetchPage(unUrl));
+
+				// Putting it in visited url list
+				visitedUrl(unUrl, 1);
+
+			} else {
+				visitedUrl(unUrl, 0);
+
+			}
+
 		}
 
 		parserObj.Parsing(html);
