@@ -9,6 +9,8 @@ import org.jsoup.nodes.Element;
 /**
  * @contributor rmw
  * @Purpose: This class handles only URL
+ * 
+ * @Task - Improving UrlFinder() - Regular Expression for url Depth - URLBank?
  */
 class UrlHandler {
 	// initiating logger
@@ -18,9 +20,11 @@ class UrlHandler {
 	protected String seedUrl = null;
 
 	// Need to define the depth of the url
-	protected String depth = null;
+	// 1 = external & internal all
+	// 0 = internal only
+	protected int depth;
 
-	public void setUrlSeeder(String startingUrl, String uDepth) {
+	public void setUrlSeeder(String startingUrl, int uDepth) {
 
 		depth = uDepth;
 		seedUrl = startingUrl;
@@ -31,7 +35,7 @@ class UrlHandler {
 		return seedUrl;
 	}
 
-	void urlFinder() {
+	void urlExplorer() {
 		/**
 		 * 1- Finding the Hyper links 2- Restriction of the same domain Link
 		 * search, Regular Expression 3- jumping and storing those in Array List

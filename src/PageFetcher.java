@@ -5,6 +5,9 @@ import org.jsoup.Jsoup;
 /**
  * @contributor rmw
  * @Purpose: This class fetches the web pages
+ * 
+ * @Task - Logging - 
+ * 
  */
 class PageFetcher {
 
