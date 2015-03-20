@@ -1,9 +1,8 @@
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
-import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-
-import javax.lang.model.util.Elements;
 
 /**
  * @contributor rmw
@@ -11,15 +10,17 @@ import javax.lang.model.util.Elements;
  */
 class Parser {
 
-	void Parsing(ArrayList<String> html) {
+	void Parsing(ArrayList<String> html) throws UnknownHostException {
 
 		// getting body text of the page
 		ArrayList<String> text = new ArrayList<String>();
 
 		for (int i = 0; i < html.size(); i++) {
 			String page = html.get(i);
+			Document nD = new Document(page);
 			// getting body tag, Not sure about this will look at t later
-			org.jsoup.select.Elements resultLinks = ((Element) page).select("body");
+			org.jsoup.select.Elements resultLinks = ((Element) nD)
+					.select("body");
 
 			// adding it the Array List
 			text.add(resultLinks.toString());
