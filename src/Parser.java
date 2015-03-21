@@ -27,7 +27,7 @@ class Parser {
 			org.jsoup.select.Elements resultLinks = ((Element) nD).select(tag);
 
 			// adding it the Array List
-			// conveting it to the string again? not sure but will look at at
+			// Converting it to the string again? not sure but will look at at
 			// later
 			text.add(resultLinks.toString());
 		}

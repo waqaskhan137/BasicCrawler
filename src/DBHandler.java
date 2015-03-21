@@ -13,7 +13,7 @@ import com.mongodb.Mongo;
  * @contributors rmw
  * @Purpose: Handles only Data base
  * 
- * @Task - Finding efficient storage formate
+ * @Task - Finding efficient storage format
  */
 public class DBHandler {
 	// initiating logger
