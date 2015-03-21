@@ -2,7 +2,6 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 
 /**
  * @contributor rmw
@@ -13,18 +12,17 @@ import org.jsoup.nodes.Element;
  */
 class Parser {
 
-	void Parsing(ArrayList<String> html) throws UnknownHostException {
+	void parsing(ArrayList<String> html) throws UnknownHostException {
 
 		String tag = "body";
 
 		// getting body text of the page
 		ArrayList<String> text = new ArrayList<String>();
-
+		String page;
 		for (int i = 0; i < html.size(); i++) {
-			String page = html.get(i);
+			page = html.get(i);
 			Document nD = new Document(page);
-
-			org.jsoup.select.Elements resultLinks = ((Element) nD).select(tag);
+			org.jsoup.select.Elements resultLinks = nD.select(tag);
 
 			// adding it the Array List
 			// Converting it to the string again? not sure but will look at at

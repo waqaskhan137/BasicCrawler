@@ -11,8 +11,8 @@ import org.jsoup.Jsoup;
  */
 class PageFetcher {
 
-	String fetchPage(String URL) throws IOException {
-		String html = Jsoup.connect(URL).get().html();
+	String fetchPage(String url) throws IOException {
+		String html = Jsoup.connect(url).get().html();
 		return html;
 	}
 }
