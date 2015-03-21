@@ -72,7 +72,7 @@ class UrlHandler {
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			log.log(Level.SEVERE, e.toString());
+			log.log(Level.SEVERE, "urlExplorer Exception: ", e);
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -98,38 +98,52 @@ class UrlHandler {
 		urlBank(vUrl, type);
 	}
 
-	void unvisitedUrl(ArrayList<String> url) throws IOException {
+	void unvisitedUrl(ArrayList<String> url) {
 
-		String type = "unvisited";
-		/**
-		 * sending the urls to the Page Fethcer and to the URL bank for storage
-		 */
-		ArrayList<String> html = new ArrayList<String>();
+		try {
+			String type = "unvisited";
+			/**
+			 * sending the urls to the Page Fethcer and to the URL bank for
+			 * storage
+			 */
+			ArrayList<String> html = new ArrayList<String>();
 
-		PageFetcher pageObj = new PageFetcher();
-		Parser parserObj = new Parser();
-		for (int i = 0; i < url.size(); i++) {
-			String unUrl = url.get(i);
-			// sending it to the Page fetcher and getting back the html of the
+			PageFetcher pageObj = new PageFetcher();
+			Parser parserObj = new Parser();
+			for (int i = 0; i < url.size(); i++) {
+				String unUrl = url.get(i);
+				// sending it to the Page fetcher and getting back the html of
+				// the
 
-			if (urlDepth(unUrl) != false) {
+				if (depth == 0) {
 
-				html.add(pageObj.fetchPage(unUrl));
+					if (urlDepth(unUrl) != false) {
 
-				// Putting it in visited url list
-				visitedUrl(unUrl, 1);
+						html.add(pageObj.fetchPage(unUrl));
 
-			} else {
-				visitedUrl(unUrl, 0);
+						// Putting it in visited url list
+						visitedUrl(unUrl, 1);
+
+					} else {
+						visitedUrl(unUrl, 0);
+
+					}
+				} else {
+					html.add(pageObj.fetchPage(unUrl));
+					visitedUrl(unUrl, 1);
+				}
 
 			}
 
+			parserObj.Parsing(html);
+
+			// Under consideration
+			urlBank(url, type);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			log.log(Level.WARNING, "Parsing Exception", e);
 		}
-
-		parserObj.Parsing(html);
-
-		// Under consideration
-		urlBank(url, type);
 
 	}
 

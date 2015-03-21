@@ -13,7 +13,7 @@ import com.mongodb.Mongo;
  * @contributors rmw
  * @Purpose: Handles only Data base
  * 
- * @Task - Finding efficient storage formate
+ * @Task - Finding efficient storage formate - close the db connection
  */
 public class DBHandler {
 	// initiating logger
@@ -21,19 +21,29 @@ public class DBHandler {
 			.getName());
 	DBCollection collection;
 
-	private void initializer() throws UnknownHostException {
-		// connect to mongoDB, IP and port number
-		Mongo mongo = new Mongo("localhost", 27017);
-		// get database from MongoDB,
-		// if database doesn't exists, mongoDB will create it automatically
-		DB db = mongo.getDB("URL");
+	private void initializer() {
+		try {
+			// connect to mongoDB, IP and port number
+			Mongo mongo;
 
-		// if collection doesn't exists, mongoDB will create it automatically
-		collection = db.getCollection("URLBank");
+			mongo = new Mongo("localhost", 27017);
+
+			// get database from MongoDB,
+			// if database doesn't exists, mongoDB will create it automatically
+			DB db = mongo.getDB("URL");
+
+			// if collection doesn't exists, mongoDB will create it
+			// automatically
+			collection = db.getCollection("URLBank");
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			log.log(Level.WARNING, "Initializer Exception: \n", e);
+		}
 
 	}
 
-	boolean insert(ArrayList<String> urlList) throws UnknownHostException {
+	boolean insert(ArrayList<String> urlList) {
 
 		initializer();
 
@@ -45,10 +55,12 @@ public class DBHandler {
 
 		collection.insert(document);
 		log.log(Level.INFO, "Document which is being Insert: \n" + document);
+
+		// Closing the DB connection
 		return true;
 	}
 
-	String fetch() throws UnknownHostException {
+	String fetch() {
 
 		initializer();
 
@@ -63,7 +75,7 @@ public class DBHandler {
 		while (cursor.hasNext()) {
 			data += cursor.next();
 		}
-
+		// closing the db connection
 		log.log(Level.INFO, "Query Done\n" + data);
 		return data;
 
