@@ -17,6 +17,12 @@ class Parser {
 	private static final Logger log = Logger.getLogger(DBHandler.class
 			.getName());
 
+	/**
+	 * Parse the Fetched page
+	 * 
+	 * @param html
+	 *            html of the page
+	 */
 	void Parsing(ArrayList<String> html) {
 
 		try {

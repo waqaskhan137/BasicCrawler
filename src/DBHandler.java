@@ -21,6 +21,9 @@ public class DBHandler {
 			.getName());
 	DBCollection collection;
 
+	/**
+	 * to initialize the DB connection
+	 */
 	private void initializer() {
 		try {
 			// connect to mongoDB, IP and port number
@@ -43,6 +46,13 @@ public class DBHandler {
 
 	}
 
+	/**
+	 * Insert the data
+	 * 
+	 * @param urlList
+	 *            URL Array List
+	 * @return Bool
+	 */
 	boolean insert(ArrayList<String> urlList) {
 
 		initializer();
@@ -60,6 +70,11 @@ public class DBHandler {
 		return true;
 	}
 
+	/**
+	 * Fetch the data from DB
+	 * 
+	 * @return String
+	 */
 	String fetch() {
 
 		initializer();

@@ -10,7 +10,15 @@ import org.jsoup.Jsoup;
  * 
  */
 class PageFetcher {
-
+	/**
+	 * It just fetch the required page
+	 * 
+	 * @param URL
+	 *            URL to be fetched
+	 * @return String of html
+	 * @throws IOException
+	 *             [description]
+	 */
 	String fetchPage(String URL) throws IOException {
 		String html = Jsoup.connect(URL).get().html();
 		return html;

@@ -7,10 +7,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 
 /**
- * @contributor rmw
- * @Purpose: This class handles only URL
- * 
- * @Task - Improving UrlFinder() - Regular Expression for url Depth - URLBank?
+ * @contributor rmw This class handles only URL - Improving UrlFinder() -
+ *              Regular Expression for url Depth - URLBank?
  */
 class UrlHandler {
 	// initiating logger
@@ -24,17 +22,37 @@ class UrlHandler {
 	// 0 = internal only
 	protected int depth;
 
+	/**
+	 * Set the seed url
+	 * 
+	 * @param startingUrl
+	 *            Starting URL
+	 * @param uDepth
+	 *            Search Depth of Domain
+	 */
 	public void setUrlSeeder(String startingUrl, int uDepth) {
 
 		depth = uDepth;
 		seedUrl = startingUrl;
 	}
 
+	/**
+	 * Getter for Seed url
+	 * 
+	 * @return seed url
+	 */
 	public String getSeedUrl() {
 
 		return seedUrl;
 	}
 
+	/**
+	 * Determines the url Depth using Regular expression
+	 * 
+	 * @param url
+	 *            given url for check
+	 * @return return bool
+	 */
 	boolean urlDepth(String url) {
 		// Regular Expression comes in if statement
 		if (url != null) {
@@ -45,6 +63,9 @@ class UrlHandler {
 		}
 	}
 
+	/**
+	 * It explores the url
+	 */
 	void urlExplorer() {
 		/**
 		 * 1- Finding the Hyper links 2- Restriction of the same domain Link
@@ -60,8 +81,6 @@ class UrlHandler {
 			ArrayList<String> href = new ArrayList<String>();
 
 			for (Element link : resultLinks) {
-
-				// Adding regular expression for filtering out the url
 
 				// Adding the urls to the Array List
 				href.add(link.attr("href"));
@@ -82,6 +101,14 @@ class UrlHandler {
 
 	}
 
+	/**
+	 * Deal with visited URL
+	 * 
+	 * @param URL
+	 *            Any url given to it which is been visited
+	 * @param fetchCheck
+	 *            to check if url has been visited to or not
+	 */
 	@SuppressWarnings("null")
 	void visitedUrl(String URL, int fetchCheck) {
 		/**
@@ -98,6 +125,12 @@ class UrlHandler {
 		urlBank(vUrl, type);
 	}
 
+	/**
+	 * The url not visted yet
+	 * 
+	 * @param url
+	 *            url to visit
+	 */
 	void unvisitedUrl(ArrayList<String> url) {
 
 		try {
@@ -147,6 +180,14 @@ class UrlHandler {
 
 	}
 
+	/**
+	 * Storage of URL
+	 * 
+	 * @param url
+	 *            url
+	 * @param type
+	 *            visited or not
+	 */
 	// Do we really need this ? for storing visited and unvisited url storage?
 	void urlBank(ArrayList<String> url, String type) {
 		/**
