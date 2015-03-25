@@ -18,6 +18,12 @@ Algorithm of a basic web crawler:-
 
 * repeat step 2 to 5 until queue is linksToBeVisited empty.
 
+##To-DO
+
+* Social(Seed/Profile URL) 
+* Web Service (Service URL & Input)
+* Demo
+
 ###Contribute 
 Just open it in Eclipse and start contributing 
 
