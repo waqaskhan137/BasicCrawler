@@ -7,25 +7,20 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 
 /**
-<<<<<<< HEAD
  * @contributor rmw This class handles only URL - Improving UrlFinder() -
  *              Regular Expression for url Depth - URLBank?
-=======
- * @contributor rmw
- * @Purpose: This class handles only URL
- * @Task - Improving UrlFinder() - Regular Expression for url Depth - URLBank?
->>>>>>> d90eb94e8adc121a15f5cd244c430df482ff14f2
  */
 class UrlHandler {
 	// initiating logger
-	private static final Logger LOG = Logger.getLogger(UrlHandler.class
+	private static final Logger log = Logger.getLogger(UrlHandler.class
 			.getName());
-	private String seedUrl = null;
+
+	protected String seedUrl = null;
+
 	// Need to define the depth of the url
 	// 1 = external & internal all
 	// 0 = internal only
-	@SuppressWarnings("unused")
-	private int depth;
+	protected int depth;
 
 	/**
 	 * Set the seed url
@@ -36,8 +31,9 @@ class UrlHandler {
 	 *            Search Depth of Domain
 	 */
 	public void setUrlSeeder(String startingUrl, int uDepth) {
-		this.depth = uDepth;
-		this.seedUrl = startingUrl;
+
+		depth = uDepth;
+		seedUrl = startingUrl;
 	}
 
 	/**
@@ -46,7 +42,8 @@ class UrlHandler {
 	 * @return seed url
 	 */
 	public String getSeedUrl() {
-		return this.seedUrl;
+
+		return seedUrl;
 	}
 
 	/**
@@ -75,34 +72,33 @@ class UrlHandler {
 		 * search, Regular Expression 3- jumping and storing those in Array List
 		 */
 		try {
+
 			org.jsoup.nodes.Document doc = Jsoup.connect(getSeedUrl()).get();
+
 			org.jsoup.select.Elements resultLinks = doc.select("a");
 			// int urlSize = ((org.jsoup.select.Elements) resultLinks).size();
-			ArrayList<String> href = new ArrayList<String>();
-			for (Element link : resultLinks) {
-<<<<<<< HEAD
 
-=======
-				// Adding regular expression for filtering out the url
->>>>>>> d90eb94e8adc121a15f5cd244c430df482ff14f2
+			ArrayList<String> href = new ArrayList<String>();
+
+			for (Element link : resultLinks) {
+
 				// Adding the urls to the Array List
 				href.add(link.attr("href"));
 			}
+
 			unvisitedUrl(href);
+
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-<<<<<<< HEAD
 			log.log(Level.SEVERE, "urlExplorer Exception: ", e);
 
-=======
-			LOG.log(Level.SEVERE, e.toString());
->>>>>>> d90eb94e8adc121a15f5cd244c430df482ff14f2
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			LOG.log(Level.SEVERE, e.toString());
+			log.log(Level.SEVERE, e.toString());
 		}
+
 	}
 
 	/**
@@ -120,14 +116,15 @@ class UrlHandler {
 		 */
 		// fecthCheck 1= fetched, 0 = not fetched
 		String type = "visited";
+
 		ArrayList<String> vUrl = null;
 		// Add those in Array List
 		vUrl.add(URL);
+
 		// Have to think over this
 		urlBank(vUrl, type);
 	}
 
-<<<<<<< HEAD
 	/**
 	 * The url not visted yet
 	 * 
@@ -181,30 +178,6 @@ class UrlHandler {
 			log.log(Level.WARNING, "Parsing Exception", e);
 		}
 
-=======
-	void unvisitedUrl(ArrayList<String> url) throws IOException {
-		String type = "unvisited";
-		/**
-		 * sending the url to the Page Fetcher and to the URL bank for storage
-		 */
-		ArrayList<String> html = new ArrayList<String>();
-		PageFetcher pageObj = new PageFetcher();
-		Parser parserObj = new Parser();
-		for (int i = 0; i < url.size(); i++) {
-			String unUrl = url.get(i);
-			// sending it to the Page fetcher and getting back the html of the
-			if (urlDepth(unUrl)) {
-				html.add(pageObj.fetchPage(unUrl));
-				// Putting it in visited url list
-				visitedUrl(unUrl, 1);
-			} else {
-				visitedUrl(unUrl, 0);
-			}
-		}
-		parserObj.parsing(html);
-		// Under consideration
-		urlBank(url, type);
->>>>>>> d90eb94e8adc121a15f5cd244c430df482ff14f2
 	}
 
 	/**
@@ -220,5 +193,7 @@ class UrlHandler {
 		/**
 		 * storing the Array list of URLs in MongoDB With time stamp
 		 */
+
 	}
+
 }
