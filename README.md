@@ -1,4 +1,4 @@
-# Web Data Collector
+# Data Scrapper
 ##Purpose: 
 
 to fetch the data from web 
