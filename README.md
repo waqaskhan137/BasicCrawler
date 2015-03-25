@@ -3,7 +3,7 @@
 
 to fetch the data from web 
 
-##Algorithm 
+###Algorithm 
 
 Algorithm of a basic web crawler:-
 
@@ -18,10 +18,12 @@ Algorithm of a basic web crawler:-
 
 * repeat step 2 to 5 until queue is linksToBeVisited empty.
 
-##To-DO
+###To-DO
 
 * Social(Seed/Profile URL) 
+* Sentiment Analysis 
 * Web Service (Service URL & Input)
+* unsupervised model better service 
 * Demo
 
 ###Contribute 
