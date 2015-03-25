@@ -10,7 +10,7 @@ import com.mongodb.DBCursor;
 import com.mongodb.Mongo;
 
 /**
- * @contributors rmw
+ * @author Waqas
  * @Purpose: Handles only Data base
  * 
  * @Task - Finding efficient storage formate - close the db connection
