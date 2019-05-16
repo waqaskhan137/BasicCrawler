@@ -10,6 +10,7 @@ public class Main {
 		UrlHandler uObj = new UrlHandler();
 		// starting Execution
 		uObj.setUrlSeeder("www.google.com", 1);
+
 	}
 
 }

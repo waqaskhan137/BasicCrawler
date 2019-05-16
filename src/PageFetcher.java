@@ -14,7 +14,7 @@ class PageFetcher {
 	/**
 	 * @ It just fetch the required page
 	 * 
-	 * @param URL
+	 * @param url
 	 *            to be fetched
 	 * @return String of html
 	 */
